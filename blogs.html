@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Flutter Developer Portfolio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1976D2;
+            --secondary-color: #4FC3F7;
+            --accent-color: #FFD740;
+            --bg-color: #E3F2FD;
+            --text-color: #1A237E;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .blog-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .blog-header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .blog-header img {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Content */
+        .blog-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .blog-content h2 {
+            color: var(--primary-color);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin: 1rem auto;
+            display: block;
+        }
+
+        /* Back to Blogs Button */
+        .back-to-blogs {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
+            margin: 1rem auto;
+            text-align: center;
+        }
+
+        .back-to-blogs:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .blog-footer {
+            text-align: center;
+            padding: 2rem 5%;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .blog-footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 2rem 3%;
+            }
+
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-header img {
+                height: 200px;
+            }
+
+            .blog-content {
+                margin: 1.5rem 3%;
+                padding: 1.5rem;
+            }
+
+            .blog-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .blog-content p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .blog-header img {
+                height: 150px;
+            }
+
+            .blog-content {
+                margin: 1rem 3%;
+                padding: 1rem;
+            }
+
+            .blog-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .back-to-blogs {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="blog-header" data-aos="fade-down">
+        <h1 id="blog-title">Blog Post</h1>
+        <img id="blog-image" src="images/blog1.jpg" alt="Blog Image">
+    </header>
+
+    <section class="blog-content" data-aos="fade-up">
+        <h2 id="blog-subtitle">Introduction</h2>
+        <p id="blog-text">This is a sample blog post content. Replace this with your actual blog content.</p>
+        <img src="images/blog-content.jpg" alt="Blog Content Image">
+        <p>Continue your blog content here with more details, insights, or code snippets relevant to your Flutter expertise.</p>
+        <a href="index.html" class="back-to-blogs">Back to Blogs</a>
+    </section>
+
+    <footer class="blog-footer" data-aos="fade-up">
+        <p>© 2025 Flutter Developer Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: false,
+            mirror: true
+        });
+
+        // Sample blog data
+        const blogs = {
+            1: {
+                title: "Mastering State Management in Flutter",
+                subtitle: "Introduction to State Management",
+                text: "State management is a critical aspect of Flutter development. In this blog, we explore Provider, Riverpod, and BLoC, discussing their pros and cons. Provider is simple and great for small apps, while Riverpod offers more flexibility. BLoC is ideal for complex apps with reactive programming needs. Learn how to choose the right approach for your Flutter project!",
+                image: "images/blog1.jpg"
+            },
+            2: {
+                title: "Building Custom Animations in Flutter",
+                subtitle: "Creating Engaging Animations",
+                text: "Animations can elevate the user experience in Flutter apps. This guide covers implicit and explicit animations, using AnimationController, Tween, and Curves. We also discuss Hero animations for seamless transitions and best practices for performance optimization. Start creating stunning animations today!",
+                image: "images/blog2.jpg"
+            }
+        };
+
+        // Load blog content based on query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const blogId = urlParams.get('id');
+        const blog = blogs[blogId] || blogs[1]; // Default to first blog if ID is invalid
+
+        document.getElementById('blog-title').textContent = blog.title;
+        document.getElementById('blog-subtitle').textContent = blog.subtitle;
+        document.getElementById('blog-text').textContent = blog.text;
+        document.getElementById('blog-image').src = blog.image;
+    </script>
+</body>
+</html>

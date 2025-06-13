@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-color: #1976D2;
+            --secondary-color: #4FC3F7;
+            --accent-color: #FFD740;
+            --bg-color: #E3F2FD;
+            --text-color: #1A237E;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            right: 5%;
+            top: 1rem;
+        }
+
+        .section {
+            padding: 5rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        /* Home Page */
+        .home {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+
+        .home h1 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .home p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .social-button {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .social-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .social-button i {
+            font-size: 1.5rem;
+        }
+
+        .swiper-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .swiper-slide {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .swiper-slide:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        /* About Page */
+        .about {
+            display: flex;
+            gap: 2rem;
+            max-width: 1000px;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            margin: 0 auto;
+        }
+
+        .about img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .about img:hover {
+            transform: scale(1.05);
+        }
+
+        .about div {
+            text-align: left;
+        }
+
+        /* Certificates Page */
+        .certificates .swiper-slide {
+            cursor: pointer;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .certificates img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .certificates img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Projects Page */
+        .projects .swiper-slide {
+            text-align: center;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .projects .swiper-slide:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .projects a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .projects a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Blogs Page */
+        .blogs .swiper-slide {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blogs .swiper-slide:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .blogs a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .blogs a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Contact Form */
+        .contact iframe {
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            margin: 0 auto;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            transition: background 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .swiper-container {
+                max-width: 700px;
+            }
+
+            .swiper-slide img {
+                height: 180px;
+            }
+
+            .about {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: flex-end;
+                padding: 1rem 3%;
+            }
+
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background: var(--primary-color);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 1rem 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar li {
+                margin: 0.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .section {
+                padding: 4rem 3%;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .home p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            .social-buttons {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .swiper-container {
+                max-width: 100%;
+                padding: 0 5px;
+            }
+
+            .swiper-slide img {
+                height: 150px;
+            }
+
+            .about {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+                max-width: 95%;
+            }
+
+            .about img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .about div {
+                text-align: center;
+            }
+
+            .certificates img {
+                height: 200px;
+            }
+
+            .contact iframe {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .swiper-slide img {
+                height: 120px;
+            }
+
+            .certificates img {
+                height: 150px;
+            }
+
+            .contact iframe {
+                height: 400px;
+            }
+
+            .about img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .navbar a {
+                font-size: 0.9rem;
+            }
+
+            .social-button {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+
+            .social-button i {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="hamburger">☰</button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#certificates">Achievements</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="section home" data-aos="zoom-in">
+        <h1>Welcome to My Flutter Developer Portfolio</h1>
+        <p>Discover my innovative Flutter projects, achievements, and insights.</p>
+        <div class="social-buttons" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://www.facebook.com/zaintahir20/" target="_blank" class="social-button">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/zaintahir._2/" target="_blank" class="social-button">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.linkedin.com/in/zain-tahir-2k25/" target="_blank" class="social-button">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+            <a href="https://github.com/zaintahir2025" target="_blank" class="social-button">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            
+        </div>
+     
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="section about" data-aos="flip-left">
+        <img src="profile_pic.JPG" alt="Profile Picture">
+        <div>
+            <h2>About Me</h2>
+            <p>I'm a dedicated Flutter developer crafting seamless, cross-platform mobile apps. With expertise in Dart and a passion for UI/UX, I create bold, user-centric solutions that stand out. Let's build something extraordinary together!</p>
+        </div>
+    </section>
+
+    <!-- Achievements and Certificates -->
+    <section id="certificates" class="section certificates" data-aos="fade-up">
+        <h2>Achievements & Certificates</h2>
+        <div class="swiper-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="Certificate of contribution in IEEE event in team graphics.jpg" alt="Certificate of contribution in IEEE event in team graphics" onclick="window.open(this.src, '_blank')">
+                    <p>Certificate For Contribution In IEEE Event In Team Graphics</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="mlsa 101_ know your basics( volunteered in team graphics and marketing).png" alt="mlsa 101_ know your basics( volunteered in team graphics and marketing)" onclick="window.open(this.src, '_blank')">
+                    <p>MLSA 101 Know Your Basics( Volunteered In Team Graphics And Marketing)</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="hakcxila team graphics and liasion.jpg" alt="hakcxila team graphics and liasion" onclick="window.open(this.src, '_blank')">
+                    <p>Hakcxila Team Graphics And Liasion</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="flutter master class- your complete guide to app developmen.jpg" alt="flutter master class- your complete guide to app developmen" onclick="window.open(this.src, '_blank')">
+                    <p>Certificate Of Course Completion: "Flutter Master Class: Your Complete Guide To App Developmen"</p>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Projects Page -->
+    <section id="projects" class="section projects" data-aos="flip-right">
+        <h2>My Projects</h2>
+        <div class="swiper-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="https://github.com/zaintahir2025/bmi-calculator-app.git" target="_blank">BMI Calculator</a>
+                    <p>A BMI Calculator In Flutter.</p>
+                </div>
+                <div class="swiper-slide">
+                    <a href="https://github.com/zaintahir2025/to-do-app.git" target="_blank">To Do List App</a>
+                    <p>A Simple To Do List App.</p>
+                </div>
+                <div class="swiper-slide">
+                    <a href="https://github.com/zaintahir2025/multiple-counters-app.git" target="_blank">Multiple COunter App</a>
+                    <p>A Simple App where You Can Add, Use And Delete Multiple Counters At A Time</p>
+                </div>
+                <div class="swiper-slide">
+                    <a href="https://github.com/zaintahir2025/simple-note-taking-app.git" target="_blank">Simple Notes Taking App</a>
+                    <p>A Simple App where You Can Add, Use, Edit and Delete Notes</p>
+                </div>
+                <div class="swiper-slide">
+                    <a href="https://github.com/zaintahir2025/pomodoro_cycle.git" target="_blank">Pomodoro App</a>
+                    <p>A Simple App For Pomodoro Cycle</p>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Blogs Page -->
+    <section id="blogs" class="section blogs" data-aos="fade-up">
+        <h2>My Blogs</h2>
+        <p>COMING SOON</p>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="section contact" data-aos="zoom-in">
+        <h2>Contact</h2>
+        <iframe src="https://forms.gle/KKdz1CnfvfJDi5mr7" title="Contact Form"></iframe>
+    </section>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+            once: false,
+            mirror: true
+        });
+
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            spaceBetween: 15,
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 25,
+                }
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navList = document.querySelector('.navbar ul');
+        hamburger.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Back to Top Button Visibility
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
